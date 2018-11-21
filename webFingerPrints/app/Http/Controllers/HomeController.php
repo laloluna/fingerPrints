@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use  App\Fingerprint;
 use  App\Person;
 use  App\Coincidence;
+use  App\Minutiae;
 
 class HomeController extends Controller
 {
@@ -30,8 +31,8 @@ class HomeController extends Controller
         $people = Person::all();
         $coincidences = Coincidence::all();
 
-        // $minutiaes_c = Minutia::all()->where('fingerprint_id', '=', $fingerprints->last()->id)->get();
-        // $minutiaes_s = Minutia::all()->where('fingerprint_id', '=', $current)->get();
+        // $minutiaes_c = Minutiae::all()->where('fingerprint_id', '=', $fingerprints->last()->id)->get();
+        // $minutiaes_s = Minutiae::all()->where('fingerprint_id', '=', $current)->get();
         // JavaScript::put([
         //     'minutiaes' => array_merge($minutiaes_c, $minutiaes_s),
         //     'templateImg' =>  $fingerprints->last()->image,

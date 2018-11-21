@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use  App\Person;
 use  App\Fingerprint;
 use  App\Coincidence;
+use  App\Minutiae;
 
 class FingerprintController extends Controller
 {
@@ -52,7 +53,7 @@ class FingerprintController extends Controller
                 // foreach($comparison->Item2 as $matchdata) {
 
                 //     $minutia = $matchdata->TemplateMtia;
-                //     $minutiae_c = Minutia::create([
+                //     $minutiae_c = Minutiae::create([
                 //         'fingerprint_id' => $fingerprint->id,
                 //         'angle' => $minutia->Angle,
                 //         'x' => $minutia->X,
@@ -61,7 +62,7 @@ class FingerprintController extends Controller
                 //     ]);
 
                 //     $minutia = $matchdata->QueryMtia;
-                //     $minutiae_s = Minutia::create([
+                //     $minutiae_s = Minutiae::create([
                 //         'fingerprint_id' => $comparator->id,
                 //         'angle' => $minutia->Angle,
                 //         'x' => $minutia->X,
