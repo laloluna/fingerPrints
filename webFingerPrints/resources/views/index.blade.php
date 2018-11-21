@@ -110,6 +110,8 @@
     <!-- jQuery -->
     <script src="{{URL::asset('template/vendor/jquery/jquery.min.js')}}"></script>
 
+    <!-- <script src="{{ asset('js/minutia.drawer.js') }}"></script> -->
+
     <!-- Bootstrap Core JavaScript -->
     <script src="{{URL::asset('template/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 

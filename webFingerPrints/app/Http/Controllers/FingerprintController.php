@@ -72,11 +72,13 @@ class FingerprintController extends Controller
             }
         }
 
-        JavaScript::put([
-            'minutiaes' => $comparison->coincidents()->with('minutias')->get(),
-            'templateImg' => $fingerprint->image,
-            'queryImg' => Fingerprint::all()->first()->image
-        ]);
+        // $minutiaes_c = Minutia::all()->where('fingerprint_id', '=', $fingerprint->id)->get();
+        // $minutiaes_s = Minutia::all()->where('fingerprint_id', '=', Fingerprint::all()->first()->id)->get();
+        // JavaScript::put([
+        //     'minutiaes' => $notengoniputaidea,
+        //     'templateImg' => $fingerprint->image,
+        //     'queryImg' => Fingerprint::all()->first()->image
+        // ]);
 
         return redirect(route('home', Fingerprint::all()->first()->id));
     }
