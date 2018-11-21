@@ -30,6 +30,14 @@ class HomeController extends Controller
         $people = Person::all();
         $coincidences = Coincidence::all();
 
+        // $minutiaes_c = Minutia::all()->where('fingerprint_id', '=', $fingerprints->last()->id)->get();
+        // $minutiaes_s = Minutia::all()->where('fingerprint_id', '=', $current)->get();
+        // JavaScript::put([
+        //     'minutiaes' => array_merge($minutiaes_c, $minutiaes_s),
+        //     'templateImg' =>  $fingerprints->last()->image,
+        //     'queryImg' => Fingerprint::all()->find($current)->image
+        // ]);
+
         return view('home', compact('fingerprints', 'people', 'coincidences', 'current'));
     }
 }
