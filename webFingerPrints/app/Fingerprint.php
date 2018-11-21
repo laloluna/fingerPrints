@@ -1,0 +1,12 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Fingerprint extends Model
+{
+    protected $table = "fingerprints";
+
+    protected $fillable = ['printype_id','side', 'image', 'person_id'];
+}

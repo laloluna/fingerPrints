@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('/');
+Route::get('home/{current}', 'HomeController@index')->name('home');
+Route::get('upload', 'FingerprintController@upload')->name('upload');
+Route::post('store', 'FingerprintController@store')->name('store');
+
+Route::group(['middleware'=>'auth'], function(){
+
+
+
 });
