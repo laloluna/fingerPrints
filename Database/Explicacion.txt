@@ -1,0 +1,4 @@
+Emplicacion triggers.
+
+Todas las tablas tienen un trigger que hace que se cambie de fecha un campo llamado Updated at que dice el ultimo cambio que se hizo en la tabla.
+Esto se maneja en el framework ya que los modelos y la base como tal se crean en la estructura de la pagina en el framework.
