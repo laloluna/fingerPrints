@@ -64,13 +64,13 @@
                         @endif
                     </span>
                     <span class="pull-right">
-                        @if ($people->find($fingerprints->find($current)->person_id)->gender == 1)
+                        {{-- @if ($people->find($fingerprints->find($current)->person_id)->gender == 1)
                             Hombre
                         @elseif ($people->find($fingerprints->find($current)->person_id)->gender == 2)
                             Mujer
                         @else
                             Desconocido
-                        @endif
+                        @endif --}}
                     </span>
                     <div class="clearfix"></div>
                 </div>

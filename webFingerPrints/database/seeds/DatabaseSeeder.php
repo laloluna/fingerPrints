@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeed::class);
         $this->call(PrintypeSeed::class);
+        $this->call(MintypeSeed::class);
     }
 }

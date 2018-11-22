@@ -1,12 +1,12 @@
-if(minutiaes !== undefined && minutiaes !== null) {
+if(minutiaes_c !== undefined && minutiaes_c !== null) {
     var canvasT = document.getElementById("imgCurrent");
     var canvasQ = document.getElementById("imgSystem");
-    console.log("init");
+    console.log(minutiaes_c);
 
-    initCanvas(minutiaes, canvasT, canvasQ);
+    initCanvas(minutiaes_c, minutiaes_s, canvasT, canvasQ);
 }
 
-function initCanvas(list, canvasT, canvasQ){
+function initCanvas(list_c, list_s, canvasT, canvasQ){
     var contextT = canvasT.getContext("2d");
     var contextQ = canvasQ.getContext("2d");
     var template, query;
@@ -19,20 +19,30 @@ function initCanvas(list, canvasT, canvasQ){
         .then((res2) => {
             query = res2;
             
-            for(var i=0; i<list.length; i++) {
+            for(var i=0; i<list_c.length; i++) {
                 var coincident = list[i];
                 var color = getRandomColor();
                 coincident.color = color;
         
-                drawMinutia(contextT, coincident.minutias[0], color);
-                drawMinutia(contextQ, coincident.minutias[1], color);
+                drawMinutia(contextT, coincident, color);
             }
+
+            for(var i=0; i<list_s.length; i++) {
+                var coincident = list[i];
+                var color = getRandomColor();
+                coincident.color = color;
+        
+                drawMinutia(contextQ, coincident, color);
+            }
+
         })
         .catch((err) => {
+            console.log(err);
             alert("No es posible cargar la imagen de la consulta. Intente nuevamente más tarde.");
         })
     })
     .catch((err) => {
+        console.log(err);
         alert("No es posible cargar la imagen de la plantilla. Intente nuevamente más tarde.");
     });
 }
@@ -49,19 +59,11 @@ function createImageOnCanvas(canvas, context, imgSource) {
             canvas.height = img.height;
             context.drawImage(img, (0), (0));
             context.save();
-
-            res = {
-                width: img.width,
-                height: img.height,
-                nwidth: img.naturalWidth,
-                nheight: img.naturalHeight
-            };
-
-            resolve(res);
+            resolve();
         };
 
-        img.onerror = () => {
-            reject("error");
+        img.onerror = (err) => {
+            reject(err);
         };
     });
 }

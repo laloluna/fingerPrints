@@ -36,40 +36,42 @@ class FingerprintController extends Controller
         foreach($fingerprints as $comparator){
             if($fingerprint->id != $comparator->id){
 
-                // exec('bin\Comparator2.exe '.$image.' '.$comparator->image, $output);
-                // if(sizeof($output) < 1) {
-                //     return redirect()->back()->withErrors(['error', 'Error imagenes.']);
-                // }
+                exec('bin\Comparator2.exe '.$image.' '.$comparator->image, $output);
+                if(sizeof($output) < 1) {
+                    return redirect()->back()->withErrors(['error', 'Error imagenes.']);
+                }
 
-                // $comparison = json_decode($output[0]);
+                $comparison = json_decode($output[0]);
+
+                // dd($comparison);
 
                 $coincidence = Coincidence::create([
                     'current_fingerprint_id' => $fingerprint->id,
                     'system_fingerprint_id' => $comparator->id,
-                    'check' => 0,
-                    //'check' => $comparison->Item1,
+                    // 'check' => 0,
+                    'check' => $comparison->Item1,
                 ]);
 
-                // foreach($comparison->Item2 as $matchdata) {
+                foreach($comparison->Item2 as $matchdata) {
 
-                //     $minutia = $matchdata->TemplateMtia;
-                //     $minutiae_c = Minutiae::create([
-                //         'fingerprint_id' => $fingerprint->id,
-                //         'angle' => $minutia->Angle,
-                //         'x' => $minutia->X,
-                //         'y' => $minutia->Y,
-                //         'mintype_id' => 0
-                //     ]);
+                    $minutiae = $matchdata->TemplateMtia;
+                    $minutiae_c = Minutiae::create([
+                        'fingerprint_id' => $fingerprint->id,
+                        'angle' => $minutiae->Angle,
+                        'x' => $minutiae->X,
+                        'y' => $minutiae->Y,
+                        'mintype_id' => 1
+                    ]);
 
-                //     $minutia = $matchdata->QueryMtia;
-                //     $minutiae_s = Minutiae::create([
-                //         'fingerprint_id' => $comparator->id,
-                //         'angle' => $minutia->Angle,
-                //         'x' => $minutia->X,
-                //         'y' => $minutia->Y,
-                //         'mintype_id' => 0
-                //     ]);
-                // }
+                    $minutiae = $matchdata->QueryMtia;
+                    $minutiae_s = Minutiae::create([
+                        'fingerprint_id' => $comparator->id,
+                        'angle' => $minutiae->Angle,
+                        'x' => $minutiae->X,
+                        'y' => $minutiae->Y,
+                        'mintype_id' => 1
+                    ]);
+                }
             }
         }
 
