@@ -18,6 +18,7 @@ Auth::routes();
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/', 'HomeController@index')->name('/');
     Route::get('home/{current}', 'HomeController@index')->name('home');
+    Route::get('order/{current}', 'HomeController@order')->name('order');
     Route::get('upload', 'FingerprintController@upload')->name('upload');
     Route::post('store', 'FingerprintController@store')->name('store');
     Route::get('logout', function(){
