@@ -8,5 +8,5 @@ class coincidence extends Model
 {
     protected $table = "coincidences";
 
-    protected $fillable = ['current_fingerprint_id','system_fingerprint_id', 'check'];
+    protected $fillable = ['current_fingerprint_id','system_fingerprint_id', 'matching'];
 }

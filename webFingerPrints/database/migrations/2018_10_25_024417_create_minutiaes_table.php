@@ -18,6 +18,8 @@ class CreateMinutiaesTable extends Migration
             $table->integer('fingerprint_id')->unsigned();
             $table->foreign('fingerprint_id')->references('id')->on('fingerprints')->onDelete('cascade');
             $table->float('angle');
+            $table->integer('coincidence_id')->unsigned();
+            $table->foreign('coincidence_id')->references('id')->on('coincidences')->onDelete('cascade');
             $table->float('x');
             $table->float('y');
             $table->integer('mintype_id')->unsigned();

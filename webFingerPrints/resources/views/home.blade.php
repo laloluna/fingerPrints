@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-md-4">
         <div class="panel panel-green">
             <div class="panel-heading">
                 {{ $image = '' }}
@@ -17,7 +17,8 @@
                     @endif
                 <div>
                     @if (count($people) > 0 && count($fingerprints) > 0)
-                        <img src="{{asset($fingerprints->last()->image)}}" class="img-responsive" id="imgCurrent">
+                        <canvas class="img-fluid" id="img-current">
+                        <!-- <img src="{{asset($fingerprints->last()->image)}}" class="img-responsive" id="imgCurrent"> -->
                     @else
                         <img src="{{asset('storage/images/placeholder.jpg')}}" class="img-responsive" id="imgCurrent">
                     @endif
@@ -36,7 +37,7 @@
     </div>
     <!-- /.col-lg-4 -->
 
-    <div class="col-lg-4">
+    <div class="col-md-4">
         <div class="panel panel-red">
             <div class="panel-heading">
                 <i class="fa fa-hand-o-up"></i>
@@ -47,7 +48,8 @@
                     @endif
                 <div>
                     @if (count($fingerprints) > 0)
-                        <img src="{{asset($fingerprints->find($current)->image)}}" class="img-responsive" id="imgSystem">
+                        <canvas class="img-fluid" id="img-system">
+                        <!-- <img src="{{asset($fingerprints->find($current)->image)}}" class="img-responsive" id="imgSystem"> -->
                     @else
                         <img src="{{asset('storage/images/placeholder.jpg')}}" class="img-responsive" id="imgSystem">
                     @endif
@@ -80,7 +82,7 @@
     </div>
     <!-- /.col-lg-4 -->
 
-    <div class="col-lg-4">
+    <div class="col-md-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-search"></i> Coincidencias
@@ -89,13 +91,13 @@
             <div class="panel-body">
                 <div class="list-group">
                     @foreach($coincidences as $i=>$coincidence)
-                        @if ($fingerprints->last()->id == $coincidence->current_fingerprint_id)
+                        <!-- @if ($fingerprints->last()->id == $coincidence->current_fingerprint_id) -->
                             <a href="{{ route('home', ['current' => $coincidence->system_fingerprint_id]) }}" class="list-group-item">
                                 <i class="fa fa-male"></i> {{$people->find($fingerprints->find($coincidence->system_fingerprint_id)->person_id)->name}}
-                                <span class="pull-right text-muted small"><em>{{ $coincidence->check }}</em>
+                                <span class="pull-right text-muted small"><em>{{ $coincidence->matching }}%</em>
                                 </span>
                             </a>
-                        @endif
+                        <!-- @endif -->
                     @endforeach
                 </div>
                 <!-- /.list-group -->

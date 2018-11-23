@@ -30,18 +30,23 @@ class HomeController extends Controller
     {
         $fingerprints = Fingerprint::all();
         $people = Person::all();
-        $coincidences = Coincidence::all();
+        $coincidences = count($fingerprints) > 0 ? 
+        Coincidence::all()->where('current_fingerprint_id', $fingerprints->last()->id)->sortByDesc('matching') :
+        Coincidence::all()->sortByDesc('matching');
 
-        $size = count($fingerprints);
-        if($size > 1){
-            $minutiaes_c = Minutiae::all()->where('fingerprint_id', $fingerprints->last()->id);
-            $minutiaes_s = Minutiae::all()->where('fingerprint_id', $current);
+        $current_coincidence = $coincidences->where('system_fingerprint_id', $current);
+
+        // dd($current_coincidence);
+        if(count($fingerprints) > 1 && count($current_coincidence) > 0){
+            $current_minutiaes = Minutiae::all()->where('coincidence_id', $current_coincidence->first()->id);
+            $minutiaes_c = $current_minutiaes->where('fingerprint_id', $fingerprints->last()->id);
+            $minutiaes_s = $current_minutiaes->where('fingerprint_id', $current);
             
             JavaScript::put([
                 'minutiaes_c' => $minutiaes_c->toArray(),
                 'minutiaes_s' => $minutiaes_s->toArray(),
-                'templateImg' =>  $fingerprints->last()->image,
-                'queryImg' => Fingerprint::all()->find($current)->image
+                'img_c' =>  $fingerprints->last()->image,
+                'img_s' => Fingerprint::all()->find($current)->image
             ]);
         }
 

@@ -19,7 +19,7 @@ class CreateCoincidencesTable extends Migration
             $table->foreign('current_fingerprint_id')->references('id')->on('fingerprints')->onDelete('cascade');
             $table->integer('system_fingerprint_id')->unsigned();
             $table->foreign('system_fingerprint_id')->references('id')->on('fingerprints')->onDelete('cascade');
-            $table->integer('check');
+            $table->float('matching');
             $table->timestamps();
         });
     }
