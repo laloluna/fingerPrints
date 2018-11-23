@@ -59,12 +59,7 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a  id="logout-form" href="{{ route('logout') }}" method="POST" style="display: none;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="{{ route('logout') }}"><i class="fa fa-user fa-fw"></i>Log Out</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -76,12 +71,6 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="index.html"><i class="fa fa-pencil-square-o"></i> Edicion Latente</a>
-                    </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-check-square-o"></i> Verificacion</a>
-                    </li>
                     <li>
                         <a href="{{route('home', 1)}}"><i class="fa fa-user"></i> Identificacion Latente</a>
                     </li>
