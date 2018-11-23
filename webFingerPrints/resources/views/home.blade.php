@@ -101,7 +101,8 @@
                     @endforeach
                 </div>
                 <!-- /.list-group -->
-                <a href="{{route('home', $current)}}" class="btn btn-default btn-block">Invertir Orden</a>
+                <a href="{{route('home', $current)}}" class="btn btn-default btn-block">Oreden Descendente</a>
+                <a href="{{route('order', $current)}}" class="btn btn-default btn-block">Orden Ascendente</a>
             </div>
             <!-- /.panel-body -->
         </div>
